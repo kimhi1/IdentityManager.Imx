@@ -1,0 +1,53 @@
+{
+  "/portal": {
+    "target": "https://192.168.30.6",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": { "^/portal": "/ApiServer/portal" },
+    "headers": {
+      "Host": "oi-idm03"
+    },
+    "cookieDomainRewrite": "localhost",
+    "cookiePathRewrite": "/"
+  },
+  "/ApiServer": {
+    "target": "https://192.168.30.6",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "headers": {
+      "Host": "oi-idm03"
+    },
+    "cookieDomainRewrite": "localhost",
+    "cookiePathRewrite": "/"
+  },
+  "/imx": {
+    "target": "https://192.168.30.6",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "headers": {
+      "Host": "oi-idm03"
+    },
+    "pathRewrite": {
+      "^/imx": "/ApiServer/imx"
+    },
+    "cookieDomainRewrite": "localhost",
+    "cookiePathRewrite": "/"
+  },
+  "/config": {
+    "target": "https://192.168.30.6",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "headers": {
+      "Host": "oi-idm03"
+    },
+    "pathRewrite": {
+      "^/config": "/ApiServer/portal/config"
+    },
+    "cookieDomainRewrite": "localhost",
+    "cookiePathRewrite": "/"
+  }
+}

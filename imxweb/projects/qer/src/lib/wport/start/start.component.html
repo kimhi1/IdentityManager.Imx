@@ -143,27 +143,6 @@
       </ng-template>
     </imx-icon-tile>
 
-    <imx-icon-tile
-      data-imx-identifier="start-tile-start-a-new-request"
-      [caption]="'#LDS#Heading New Request' | translate"
-      [subtitle]="'#LDS#Request products for yourself or for others.' | translate"
-      [image]="'cart'"
-      [identifier]="'start-a-new-request'"
-      *ngIf="viewReady && ShowNewRequestLink()"
-    >
-      <ng-template #ActionTemplate>
-        <button
-          mat-button
-          class="imx-button-uppercase"
-          color="primary"
-          [attr.data-imx-identifier]="'imx-start-button-new-request'"
-          (click)="GoToProductSelection()"
-        >
-          <span>{{ '#LDS#Request products' | translate }}</span>
-          <eui-icon class="imx-margin-left-15" icon="forward"></eui-icon>
-        </button>
-      </ng-template>
-    </imx-icon-tile>
     <imx-ext id="Dashboard-MediumTiles"></imx-ext>
   </div>
   <div class="imx-flexible-tile-row">
