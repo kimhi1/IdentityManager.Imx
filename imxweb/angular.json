@@ -54,7 +54,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/qbm/**/*.ts", "projects/qbm/**/*.html"]
+            "lintFilePatterns": [
+              "projects/qbm/**/*.ts",
+              "projects/qbm/**/*.html"
+            ]
           }
         }
       }
@@ -110,7 +113,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/qer/**/*.ts", "projects/qer/**/*.html"]
+            "lintFilePatterns": [
+              "projects/qer/**/*.ts",
+              "projects/qer/**/*.html"
+            ]
           }
         }
       }
@@ -163,7 +169,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/apc/**/*.ts", "projects/apc/**/*.html"]
+            "lintFilePatterns": [
+              "projects/apc/**/*.ts",
+              "projects/apc/**/*.html"
+            ]
           }
         }
       }
@@ -225,7 +234,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/att/**/*.ts", "projects/att/**/*.html"]
+            "lintFilePatterns": [
+              "projects/att/**/*.ts",
+              "projects/att/**/*.html"
+            ]
           }
         }
       }
@@ -271,7 +283,9 @@
             "main": "projects/aad/src/test.ts",
             "tsConfig": "projects/aad/tsconfig.spec.json",
             "karmaConfig": "projects/aad/karma.conf.js",
-            "codeCoverageExclude": ["projects/o3t/src/**/test/*"],
+            "codeCoverageExclude": [
+              "projects/o3t/src/**/test/*"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "./node_modules",
@@ -285,7 +299,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/aad/**/*.ts", "projects/aad/**/*.html"]
+            "lintFilePatterns": [
+              "projects/aad/**/*.ts",
+              "projects/aad/**/*.html"
+            ]
           }
         }
       }
@@ -344,7 +361,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/cpl/**/*.ts", "projects/cpl/**/*.html"]
+            "lintFilePatterns": [
+              "projects/cpl/**/*.ts",
+              "projects/cpl/**/*.html"
+            ]
           }
         }
       }
@@ -403,7 +423,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/dpr/**/*.ts", "projects/dpr/**/*.html"]
+            "lintFilePatterns": [
+              "projects/dpr/**/*.ts",
+              "projects/dpr/**/*.html"
+            ]
           }
         }
       }
@@ -449,7 +472,9 @@
             "main": "projects/hds/src/test.ts",
             "tsConfig": "projects/hds/tsconfig.spec.json",
             "karmaConfig": "projects/hds/karma.conf.js",
-            "codeCoverageExclude": ["projects/hds/src/**/test/*"],
+            "codeCoverageExclude": [
+              "projects/hds/src/**/test/*"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "./node_modules",
@@ -463,7 +488,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/hds/**/*.ts", "projects/hds/**/*.html"]
+            "lintFilePatterns": [
+              "projects/hds/**/*.ts",
+              "projects/hds/**/*.html"
+            ]
           }
         }
       }
@@ -509,7 +537,9 @@
             "main": "projects/olg/src/test.ts",
             "tsConfig": "projects/olg/tsconfig.spec.json",
             "karmaConfig": "projects/olg/karma.conf.js",
-            "codeCoverageExclude": ["projects/olg/src/**/test/*"],
+            "codeCoverageExclude": [
+              "projects/olg/src/**/test/*"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "./node_modules",
@@ -523,7 +553,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/olg/**/*.ts", "projects/olg/**/*.html"]
+            "lintFilePatterns": [
+              "projects/olg/**/*.ts",
+              "projects/olg/**/*.html"
+            ]
           }
         }
       }
@@ -582,7 +615,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/pol/**/*.ts", "projects/pol/**/*.html"]
+            "lintFilePatterns": [
+              "projects/pol/**/*.ts",
+              "projects/pol/**/*.html"
+            ]
           }
         }
       }
@@ -641,7 +677,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/rmb/**/*.ts", "projects/rmb/**/*.html"]
+            "lintFilePatterns": [
+              "projects/rmb/**/*.ts",
+              "projects/rmb/**/*.html"
+            ]
           }
         }
       }
@@ -700,7 +739,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/rms/**/*.ts", "projects/rms/**/*.html"]
+            "lintFilePatterns": [
+              "projects/rms/**/*.ts",
+              "projects/rms/**/*.html"
+            ]
           }
         }
       }
@@ -759,7 +801,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/rps/**/*.ts", "projects/rps/**/*.html"]
+            "lintFilePatterns": [
+              "projects/rps/**/*.ts",
+              "projects/rps/**/*.html"
+            ]
           }
         }
       }
@@ -800,14 +845,20 @@
             "tsConfig": "projects/sac/tsconfig.spec.json",
             "karmaConfig": "projects/sac/karma.conf.js",
             "stylePreprocessorOptions": {
-              "includePaths": ["./shared/assets", "./shared/scss"]
+              "includePaths": [
+                "./shared/assets",
+                "./shared/scss"
+              ]
             }
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/sac/**/*.ts", "projects/sac/**/*.html"]
+            "lintFilePatterns": [
+              "projects/sac/**/*.ts",
+              "projects/sac/**/*.html"
+            ]
           }
         }
       }
@@ -866,7 +917,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/tsb/**/*.ts", "projects/tsb/**/*.html"]
+            "lintFilePatterns": [
+              "projects/tsb/**/*.ts",
+              "projects/tsb/**/*.html"
+            ]
           }
         }
       }
@@ -920,7 +974,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/uci/**/*.ts", "projects/uci/**/*.html"]
+            "lintFilePatterns": [
+              "projects/uci/**/*.ts",
+              "projects/uci/**/*.html"
+            ]
           }
         }
       }
@@ -966,7 +1023,9 @@
               "@elemental-ui/cadence-icon/codepoints"
             ],
             "index": "projects/qbm-app-landingpage/src/index.html",
-            "polyfills": ["projects/qbm-app-landingpage/src/polyfills.ts"],
+            "polyfills": [
+              "projects/qbm-app-landingpage/src/polyfills.ts"
+            ],
             "tsConfig": "projects/qbm-app-landingpage/tsconfig.app.json",
             "assets": [
               "projects/qbm-app-landingpage/src/assets",
@@ -1109,7 +1168,9 @@
                 "output": "./assets"
               }
             ],
-            "styles": ["projects/qbm-app-landingpage/src/styles.scss"],
+            "styles": [
+              "projects/qbm-app-landingpage/src/styles.scss"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "./node_modules",
@@ -1123,7 +1184,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/qbm-app-landingpage//**/*.ts", "projects/qbm-app-landingpage//**/*.html"]
+            "lintFilePatterns": [
+              "projects/qbm-app-landingpage//**/*.ts",
+              "projects/qbm-app-landingpage//**/*.html"
+            ]
           }
         }
       }
@@ -1166,7 +1230,9 @@
             ],
             "outputPath": "dist/qer-app-operationssupport",
             "index": "projects/qer-app-operationssupport/src/index.html",
-            "polyfills": ["projects/qer-app-operationssupport/src/polyfills.ts"],
+            "polyfills": [
+              "projects/qer-app-operationssupport/src/polyfills.ts"
+            ],
             "tsConfig": "projects/qer-app-operationssupport/tsconfig.app.json",
             "assets": [
               "projects/qer-app-operationssupport/src/assets",
@@ -1300,7 +1366,9 @@
             "polyfills": "projects/qer-app-operationssupport/src/polyfills.ts",
             "tsConfig": "projects/qer-app-operationssupport/tsconfig.spec.json",
             "karmaConfig": "projects/qer-app-operationssupport/karma.conf.js",
-            "styles": ["projects/qer-app-operationssupport/src/styles.scss"],
+            "styles": [
+              "projects/qer-app-operationssupport/src/styles.scss"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "./node_modules",
@@ -1323,7 +1391,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/qer-app-operationssupport//**/*.ts", "projects/qer-app-operationssupport//**/*.html"]
+            "lintFilePatterns": [
+              "projects/qer-app-operationssupport//**/*.ts",
+              "projects/qer-app-operationssupport//**/*.html"
+            ]
           }
         }
       }
@@ -1366,7 +1437,9 @@
             ],
             "outputPath": "dist/qer-app-portal",
             "index": "projects/qer-app-portal/src/index.html",
-            "polyfills": ["projects/qer-app-portal/src/polyfills.ts"],
+            "polyfills": [
+              "projects/qer-app-portal/src/polyfills.ts"
+            ],
             "tsConfig": "projects/qer-app-portal/tsconfig.app.json",
             "assets": [
               "projects/qer-app-portal/src/assets",
@@ -1501,7 +1574,9 @@
             "polyfills": "projects/qer-app-portal/src/polyfills.ts",
             "tsConfig": "projects/qer-app-portal/tsconfig.spec.json",
             "karmaConfig": "projects/qer-app-portal/karma.conf.js",
-            "styles": ["projects/qer-app-portal/src/styles.scss"],
+            "styles": [
+              "projects/qer-app-portal/src/styles.scss"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "./node_modules",
@@ -1510,13 +1585,19 @@
                 "./shared/scss"
               ]
             },
-            "assets": ["projects/qer-app-portal/src/appconfig.json", "projects/qer-app-portal/src/assets"]
+            "assets": [
+              "projects/qer-app-portal/src/appconfig.json",
+              "projects/qer-app-portal/src/assets"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/qer-app-portal//**/*.ts", "projects/qer-app-portal//**/*.html"]
+            "lintFilePatterns": [
+              "projects/qer-app-portal//**/*.ts",
+              "projects/qer-app-portal//**/*.html"
+            ]
           }
         }
       }
@@ -1575,7 +1656,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/aob/**/*.ts", "projects/aob/**/*.html"]
+            "lintFilePatterns": [
+              "projects/aob/**/*.ts",
+              "projects/aob/**/*.html"
+            ]
           }
         }
       }
@@ -1617,7 +1701,9 @@
             ],
             "outputPath": "dist/qer-app-pwdportal",
             "index": "projects/qer-app-pwdportal/src/index.html",
-            "polyfills": ["projects/qer-app-pwdportal/src/polyfills.ts"],
+            "polyfills": [
+              "projects/qer-app-pwdportal/src/polyfills.ts"
+            ],
             "tsConfig": "projects/qer-app-pwdportal/tsconfig.app.json",
             "aot": true,
             "assets": [
@@ -1750,8 +1836,13 @@
             "polyfills": "projects/qer-app-pwdportal/src/polyfills.ts",
             "tsConfig": "projects/qer-app-pwdportal/tsconfig.spec.json",
             "karmaConfig": "projects/qer-app-pwdportal/karma.conf.js",
-            "assets": ["projects/qer-app-pwdportal/src/appconfig.json", "projects/qer-app-pwdportal/src/assets"],
-            "styles": ["projects/qer-app-pwdportal/src/styles.scss"],
+            "assets": [
+              "projects/qer-app-pwdportal/src/appconfig.json",
+              "projects/qer-app-pwdportal/src/assets"
+            ],
+            "styles": [
+              "projects/qer-app-pwdportal/src/styles.scss"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "./node_modules",
@@ -1765,7 +1856,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/qer-app-pwdportal/**/*.ts", "projects/qer-app-pwdportal/**/*.html"]
+            "lintFilePatterns": [
+              "projects/qer-app-pwdportal/**/*.ts",
+              "projects/qer-app-pwdportal/**/*.html"
+            ]
           }
         }
       }
@@ -1820,8 +1914,15 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["projects/qam/tsconfig.lib.json", "projects/qam/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "**/*.spec.ts", "**/*.json"]
+            "tsConfig": [
+              "projects/qam/tsconfig.lib.json",
+              "projects/qam/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "**/*.spec.ts",
+              "**/*.json"
+            ]
           }
         }
       }
@@ -1866,7 +1967,9 @@
               "@elemental-ui/cadence-icon/codepoints"
             ],
             "index": "projects/custom-app/src/index.html",
-            "polyfills": ["projects/custom-app/src/polyfills.ts"],
+            "polyfills": [
+              "projects/custom-app/src/polyfills.ts"
+            ],
             "tsConfig": "projects/custom-app/tsconfig.app.json",
             "aot": true,
             "assets": [
@@ -1888,7 +1991,10 @@
                 "output": "./assets"
               }
             ],
-            "styles": ["projects/custom-app/src/styles.scss", "projects/qbm/src/lib/styles/imx-page-title.scss"],
+            "styles": [
+              "projects/custom-app/src/styles.scss",
+              "projects/qbm/src/lib/styles/imx-page-title.scss"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "./node_modules",
@@ -1995,8 +2101,13 @@
             "polyfills": "projects/custom-app/src/polyfills.ts",
             "tsConfig": "projects/custom-app/tsconfig.spec.json",
             "karmaConfig": "projects/custom-app/karma.conf.js",
-            "assets": ["projects/custom-app/src/appconfig.json", "projects/custom-app/src/assets"],
-            "styles": ["projects/custom-app/src/styles.scss"],
+            "assets": [
+              "projects/custom-app/src/appconfig.json",
+              "projects/custom-app/src/assets"
+            ],
+            "styles": [
+              "projects/custom-app/src/styles.scss"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "./node_modules",
@@ -2010,7 +2121,52 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/custom-app/**/*.ts", "projects/custom-app/**/*.html"]
+            "lintFilePatterns": [
+              "projects/custom-app/**/*.ts",
+              "projects/custom-app/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "my-access-portal": {
+      "projectType": "library",
+      "root": "projects/my-access-portal",
+      "sourceRoot": "projects/my-access-portal/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/my-access-portal/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/my-access-portal/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/my-access-portal/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/my-access-portal/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/my-access-portal/**/*.ts",
+              "projects/my-access-portal/**/*.html"
+            ]
           }
         }
       }
@@ -2018,6 +2174,9 @@
   },
   "cli": {
     "analytics": "406eb5c5-3afb-4dab-b878-0cb0ade8d2aa",
-    "schematicCollections": ["@angular-eslint/schematics", "@angular-eslint/schematics"]
+    "schematicCollections": [
+      "@angular-eslint/schematics",
+      "@angular-eslint/schematics"
+    ]
   }
 }

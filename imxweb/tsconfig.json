@@ -22,7 +22,12 @@
       "att": ["dist/att"],
       "att/*": ["dist/att/*"],
       "dpr": ["dist/dpr"],
-      "dpr/*": ["dist/dpr/*"],
+      "dpr/*": [
+        "dist/dpr/*"
+      ],
+      "my-access-portal": [
+        "./dist/my-access-portal"
+      ],
       "o3t": ["dist/o3t"],
       "o3t/*": ["dist/o3t/*"],
       "qbm": ["dist/qbm"],
