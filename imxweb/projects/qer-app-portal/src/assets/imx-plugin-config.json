@@ -1,0 +1,8 @@
+{
+  "qer-app-portal": [
+    {
+      "Container": "my-access-portal",
+      "Name": "MyAccessPortalModule"
+    }
+  ]
+}

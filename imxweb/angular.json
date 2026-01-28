@@ -1458,6 +1458,11 @@
                 "glob": "**/*",
                 "input": "./node_modules/@elemental-ui/core/assets",
                 "output": "./assets"
+              },
+              {
+                "glob": "imx-plugin-config.json",
+                "input": "projects/qer-app-portal/src/assets",
+                "output": "./"
               }
             ],
             "styles": [

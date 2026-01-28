@@ -26,7 +26,7 @@
         "dist/dpr/*"
       ],
       "my-access-portal": [
-        "./dist/my-access-portal"
+        "projects/my-access-portal/src/public-api.ts"
       ],
       "o3t": ["dist/o3t"],
       "o3t/*": ["dist/o3t/*"],

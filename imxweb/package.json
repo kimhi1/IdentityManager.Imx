@@ -11,6 +11,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --configuration development",
+    "start:proxy": "npx ng serve --project qer-app-portal --configuration development --proxy-config proxy.conf.json",
     "start:remote-dev": "ng serve -c remote-dev",
     "start:remote-qs": "ng serve -c remote-qs",
     "pre-build": "node prebuild.js",

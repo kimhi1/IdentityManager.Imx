@@ -1,0 +1,19 @@
+.imx-tile-custom {
+  padding: 20px;
+  background-color: #fff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+}
+
+h3 {
+  margin-top: 0;
+  color: #0072C6;
+}
+
+:host {
+  display: block;
+  margin-bottom: 20px;
+}

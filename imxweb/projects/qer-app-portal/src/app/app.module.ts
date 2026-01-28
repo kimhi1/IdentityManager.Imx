@@ -33,6 +33,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EuiCoreModule, EuiMaterialModule } from '@elemental-ui/core';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { MyAccessPortalModule } from 'my-access-portal';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 import {
@@ -102,6 +103,7 @@ export function getBaseHref(): string {
   bootstrap: [AppComponent],
   imports: [
     AppRoutingModule,
+    MyAccessPortalModule,
     AuthenticationModule,
     BrowserAnimationsModule,
     BrowserModule,
