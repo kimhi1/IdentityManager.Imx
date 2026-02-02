@@ -1,1 +1,58 @@
-<p>my-entitlements-page works!</p>
+<div class="page-container">
+  
+  <header class="page-header">
+    <h1>My Access Overview</h1>
+    <p class="subtitle">View your assigned Business Roles and System Roles</p>
+  </header>
+
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading access data...</p>
+  </div>
+
+  <div class="grid-container" *ngIf="!isLoading">
+
+    <div class="card">
+      <div class="card-header br-header">
+        <h2>Business Roles</h2>
+        <span class="badge">{{ businessRoles.length }}</span>
+      </div>
+      <div class="card-body">
+        <ul *ngIf="businessRoles.length > 0; else noBr">
+          <li *ngFor="let item of businessRoles" class="list-item">
+            <div class="item-icon">🏢</div>
+            <div class="item-content">
+              <span class="item-title">{{ item.Display || item.Uid }}</span>
+              <span class="item-sub">{{ item.Description || 'Business Role' }}</span>
+            </div>
+          </li>
+        </ul>
+        <ng-template #noBr>
+          <div class="empty-state">No Business Roles assigned.</div>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header eset-header">
+        <h2>System Roles (ESet)</h2>
+        <span class="badge">{{ entitlements.length }}</span>
+      </div>
+      <div class="card-body">
+        <ul *ngIf="entitlements.length > 0; else noEset">
+          <li *ngFor="let item of entitlements" class="list-item">
+            <div class="item-icon">⚙️</div>
+            <div class="item-content">
+              <span class="item-title">{{ item.Display || item.Uid }}</span>
+              <span class="item-sub">{{ item.Description || 'System Role' }}</span>
+            </div>
+          </li>
+        </ul>
+        <ng-template #noEset>
+          <div class="empty-state">No System Roles assigned.</div>
+        </ng-template>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button'; // Angular BTN
 import { MatCardModule } from '@angular/material/card'; // Card for Tile
 import { RouterModule, Routes } from '@angular/router';
 
+import { HttpClientModule } from '@angular/common/http';
 import { ExtService } from 'qbm';
 import { AccessTileComponent } from './access-tile/access-tile.component';
 import { InitService } from './init.service';
@@ -25,6 +26,7 @@ export function initMyAccessPortal(init: InitService) {
   imports: [
     CommonModule,
     MatButtonModule,
+    HttpClientModule,
     MatCardModule,
     RouterModule.forChild(routes)
   ],
