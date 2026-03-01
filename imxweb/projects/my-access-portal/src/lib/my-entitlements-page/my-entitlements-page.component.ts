@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MyAccessService } from '../my-access.service';
 
-interface UserOption {
-  Uid: string;
-  Display: string;
-  IsMe: boolean;
-}
-
 @Component({
   selector: 'lib-my-entitlements-page',
   templateUrl: './my-entitlements-page.component.html',
@@ -15,10 +9,10 @@ interface UserOption {
 export class MyEntitlementsPageComponent implements OnInit {
 
   public businessRoles: any[] = [];
-  public entitlements: any[] = [];
+  public requests: any[] = [];
+  public apiTestResult: any[] = [];
+  public directReports: any[] = [];
 
-  public availableUsers: UserOption[] = [];
-  public selectedUserUid: string = '';
   public isLoading = false;
 
   constructor(private myAccess: MyAccessService) {}
@@ -28,15 +22,18 @@ export class MyEntitlementsPageComponent implements OnInit {
     try {
       console.log('Starting data fetch...');
 
-      /*console.log('checking API endpoint...');
-      this.apiTestResult = await this.myAccess.testApiEndpoint();
-      console.log('API endpoint test result:', this.apiTestResult);*/
+      // console.log('checking API endpoint...');
+      // this.apiTestResult = await this.myAccess.testApiEndpoint();
+      // console.log('API endpoint test result:', this.apiTestResult);
       
       this.businessRoles = await this.myAccess.getBusinessRoles();
       console.log('Roles loaded:', this.businessRoles);
 
-      this.entitlements = await this.myAccess.getEntitlements();
-      console.log('Entitlements loaded:', this.entitlements);
+      this.requests = await this.myAccess.getUserRequests();
+      console.log('Requests loaded:', this.requests);
+
+      this.directReports = await this.myAccess.getDirectReports();
+      console.log('Direct reports loaded:', this.directReports);
 
     } catch (error) {
       console.error('Error fetching access data:', error);
@@ -44,4 +41,30 @@ export class MyEntitlementsPageComponent implements OnInit {
       this.isLoading = false;
     }
   }
+
+  /*public async onUserChange() {
+    await this.loadDataForSelectedUser();
+  }
+
+  private async loadDataForSelectedUser() {
+    this.isLoading = true;
+    this.businessRoles = [];
+    this.requests = [];
+
+    try {
+      const [roles, reqs] = await Promise.all([
+        this.myAccess.getBusinessRoles(this.selectedUserUid),
+        this.myAccess.getUserRequests(this.selectedUserUid)
+      ]);
+
+      this.businessRoles = roles;
+      this.requests = reqs;
+
+    } catch (error) {
+      console.error('Error fetching access data for user', error);
+    } finally {
+      this.isLoading = false;
+    }
+  
+  }*/
 }

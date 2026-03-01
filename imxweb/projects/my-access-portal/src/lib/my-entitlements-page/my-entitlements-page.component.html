@@ -1,58 +1,200 @@
-<div class="page-container">
+<div class="page-container" dir="rtl">
   
   <header class="page-header">
-    <h1>My Access Overview</h1>
-    <p class="subtitle">View your assigned Business Roles and System Roles</p>
+    <div class="header-content">
+      <div class="brand-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+      </div>
+
+      <div class="title-section">
+        <h1>My Dashboard</h1>
+        <p class="subtitle">Welcome to your Identity Access Portal</p>
+      </div>
+
+    </div>
   </header>
 
-  <div *ngIf="isLoading" class="loading-container">
+  <div *ngIf="isLoading" class="loading-state">
     <div class="spinner"></div>
-    <p>Loading access data...</p>
+    <p>Loading data...</p>
   </div>
 
   <div class="grid-container" *ngIf="!isLoading">
+    
 
-    <div class="card">
-      <div class="card-header br-header">
-        <h2>Business Roles</h2>
-        <span class="badge">{{ businessRoles.length }}</span>
+      <div class="card team-card" *ngIf="directReports.length > 0">
+        <div class="card-header bg-orange">
+          <h2>העובדים שלי</h2>
+          <span class="badge">{{ directReports.length }}</span>
+        </div>
+        
+        <div class="card-body scrollable-body">
+          <table class="entitlements-table compact-table"> 
+            <thead>
+              <tr>
+                <th class="text-bold">שם מלא</th>
+                <th class="text-bold">מייל</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employee of directReports">
+                <td class="text-bold">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span>👤</span>
+                    {{ employee.Columns?.Display?.Value || employee.Display }}
+                  </div>
+                </td>
+                <td>
+                  <div style="font-size: 0.9em; color: #666;">
+                    {{ employee.Columns?.DefaultEmailAddress?.Value || '-' }}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="card-footer">
+          <button class="btn-primary" [routerLink]="['/myresponsibilities/identities']" [queryParams]="{ isinactive: '0' }">
+            נהל עובדים
+          </button>
+        </div>
       </div>
-      <div class="card-body">
-        <ul *ngIf="businessRoles.length > 0; else noBr">
-          <li *ngFor="let item of businessRoles" class="list-item">
-            <div class="item-icon">🏢</div>
-            <div class="item-content">
-              <span class="item-title">{{ item.Display || item.Uid }}</span>
-              <span class="item-sub">{{ item.Description || 'Business Role' }}</span>
-            </div>
-          </li>
-        </ul>
-        <ng-template #noBr>
-          <div class="empty-state">No Business Roles assigned.</div>
-        </ng-template>
+
+      <div class="card role-card">
+        <div class="card-header bg-blue">
+          <h2>העיסוקים שלי</h2>
+          <span class="badge">{{ businessRoles.length }}</span>
+        </div>
+        <div class="card-body">
+          
+          <div class="table-responsive" *ngIf="businessRoles.length > 0; else noRoles">
+            <table class="entitlements-table">
+              <thead>
+                <tr>
+                  <th class="text-bold">שם העיסוק</th>
+                  <th class="text-bold">קוד העיסוק</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of businessRoles">
+                  <td class="text-bold">
+                    <span class="role-icon">🛡️</span>
+                    {{ item.OrgDetails?.Columns?.ShortName?.Value }}
+                  </td>
+                  <td class="code-cell text-bold">{{ item.OrgDetails?.Columns?.Ident_Org?.Value }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <ng-template #noRoles>
+            <div class="empty-message">No Business Roles assigned.</div>
+          </ng-template>
+        </div>
+      </div>
+
+      <div class="card request-card" *ngIf="requests.length > 0">
+        <div class="card-header bg-purple"> 
+          <h2>הבקשות האחרונות שלי</h2>
+          <span class="badge">{{ requests.length }}</span>
+        </div>
+        
+        <div class="card-body scrollable-body"> 
+          
+          <ng-container *ngIf="requests.length > 0; else noRequests">
+            <table class="entitlements-table">
+              <thead>
+                <tr>
+                  <th class="text-bold">שם הבקשה</th>
+                  <th class="text-bold">סטטוס</th>
+                  <th class="text-bold">תאריך</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let req of requests">
+                  <td class="text-bold">{{ req.Columns?.DisplayOrg?.Value || 'Unknown' }}</td>
+                  <td>
+                    <span class="status-badge" [ngClass]="req.Columns?.OrderState?.Value">
+                      {{ req.Columns?.UiOrderState?.DisplayValue }}
+                    </span>
+                  </td>
+                  <td>{{ req.Columns?.OrderDate?.DisplayValue | date:'shortDate' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </ng-container>
+
+          <ng-template #noRequests>
+            <div class="empty-message">No pending requests found.</div>
+          </ng-template>
+
+        </div>
+        
+        <div class="card-footer">
+          <button class="btn-primary" 
+                  [routerLink]="['/requesthistory']"
+                  [queryParams]="{ showMyPendings: 'true' }">
+            הצג את כל הבקשות
+          </button>
+        </div>
+      </div>
+
+      <!-- Pending Request Card Use Later -->
+      <div class="card approval-card" *ngIf="false">
+      <div class="card-header bg-green"> <h2>Waiting for Approval</h2>
+        <span class="badge">3</span> </div>
+      
+      <div class="card-body scrollable-body">
+        <table class="entitlements-table compact-table">
+          <thead>
+            <tr>
+              <th class="text-bold">Requestor</th>
+              <th class="text-bold">Request</th>
+              <th class="text-bold">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-bold">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span>👤</span> Israel Israeli
+                </div>
+              </td>
+              <td>VPN Access</td>
+              <td>18/02/2026</td>
+            </tr>
+            <tr>
+              <td class="text-bold">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span>👤</span> Dana Cohen
+                </div>
+              </td>
+              <td>SAP_Finance</td>
+              <td>17/02/2026</td>
+            </tr>
+            <tr>
+              <td class="text-bold">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span>👤</span> Moshe Levi
+                </div>
+              </td>
+              <td>Admin_Group</td>
+              <td>15/02/2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="card-footer">
+        <button class="btn-primary" [routerLink]="['/itshop/approvals']">
+          Go to Approvals
+        </button>
       </div>
     </div>
-
-    <div class="card">
-      <div class="card-header eset-header">
-        <h2>System Roles (ESet)</h2>
-        <span class="badge">{{ entitlements.length }}</span>
-      </div>
-      <div class="card-body">
-        <ul *ngIf="entitlements.length > 0; else noEset">
-          <li *ngFor="let item of entitlements" class="list-item">
-            <div class="item-icon">⚙️</div>
-            <div class="item-content">
-              <span class="item-title">{{ item.Display || item.Uid }}</span>
-              <span class="item-sub">{{ item.Description || 'System Role' }}</span>
-            </div>
-          </li>
-        </ul>
-        <ng-template #noEset>
-          <div class="empty-state">No System Roles assigned.</div>
-        </ng-template>
-      </div>
+      
     </div>
-
-  </div>
 </div>

@@ -1,42 +1,116 @@
-/* Layout & Container */
+/* =========================================
+   1. Layout & Main Container
+   ========================================= */
 .page-container {
-  padding: 20px;
-  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /*padding: 20px 10px;*/ /* Removed to allow full width */
+  max-width: 100%;
   margin: 0 auto;
   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  text-align: right; /* RTL alignment */
+  box-sizing: border-box;
+  height: 100vh;           
+  padding-bottom: 0;   
 }
 
-.page-header {
-  margin-bottom: 30px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 10px;
-}
-
-.page-header h1 {
-  margin: 0;
-  color: #333;
-  font-size: 24px;
-}
-
-.subtitle {
-  color: #666;
-  margin-top: 5px;
-}
-
-/* Grid System */
+/* Main Grid: 2 Columns (Right: Roles, Left: Requests+Team) */
 .grid-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 150px;
+  grid-auto-rows: max-content;
+
+  padding-right: 5px;
+  padding-left: 5px;
+
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: 1fr 1fr; /* Equal split 50% - 50% */
+  gap: 20px;
+  align-items: start;
+}
+
+.grid-container::-webkit-scrollbar { width: 8px; }
+.grid-container::-webkit-scrollbar-track { background: #f1f1f1; }
+.grid-container::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+.grid-container::-webkit-scrollbar-thumb:hover { background: #bbb; }
+
+.team-card, .role-card, .request-card {
+  grid-column: auto;
+  grid-row: auto;
+}
+
+.column-wrapper {
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
-/* Cards */
+/* =========================================
+   2. Header Styles
+   ========================================= */
+.page-header {
+  margin-bottom: 20px;   
+  padding: 15px 25px;   
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  border-radius: 8px;     
+  box-shadow: 0 4px 10px rgba(0, 86, 179, 0.15);
+  color: white;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;  
+}
+
+/* Logo Styles */
+.brand-logo {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px;   
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;   
+  height: 45px;        
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.brand-logo svg {
+  width: 24px;               
+  height: 24px;
+  color: #fff;
+}
+
+/* Typography */
+.title-section h1 {
+  margin: 0;
+  font-size: 22px;      
+  font-weight: 600;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.title-section .subtitle {
+  margin-top: 2px;
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;  
+}
+
+/* =========================================
+   3. Card Styles
+   ========================================= */
 .card {
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   overflow: hidden;
   border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-header {
@@ -47,14 +121,17 @@
   border-bottom: 1px solid #eee;
 }
 
-.br-header { background-color: #f8f9fa; border-left: 4px solid #007bff; }
-.eset-header { background-color: #f8f9fa; border-left: 4px solid #28a745; }
-
 .card-header h2 {
   margin: 0;
   font-size: 18px;
   color: #444;
 }
+
+/* Header Colors */
+.bg-blue { background-color: #f0f7ff; border-right: 4px solid #007bff; border-left: none; }
+.bg-purple { background-color: #f3f0ff; border-right: 4px solid #6f42c1; border-left: none; } 
+.bg-orange { background-color: #fff5e6; border-right: 4px solid #fd7e14; border-left: none; }
+.bg-green { background-color: #e8f5e9; border-right: 4px solid #28a745;  border-left: none; }
 
 .badge {
   background: #e9ecef;
@@ -65,82 +142,126 @@
   font-weight: bold;
 }
 
-/* Lists */
+/* =========================================
+   4. Card Body & Scrolling Logic
+   ========================================= */
 .card-body {
   padding: 0;
-  max-height: 500px;
-  overflow-y: auto;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.list-item {
-  padding: 15px 20px;
-  border-bottom: 1px solid #f0f0f0;
-  display: flex;
-  align-items: center;
-  transition: background 0.2s;
-}
-
-.list-item:last-child {
-  border-bottom: none;
-}
-
-.list-item:hover {
-  background-color: #fcfcfc;
-}
-
-.item-icon {
-  font-size: 20px;
-  margin-right: 15px;
-  opacity: 0.7;
-}
-
-.item-content {
+  background-color: #fff;
   display: flex;
   flex-direction: column;
 }
 
-.item-title {
-  font-weight: 600;
+/* This class controls the height. 
+   If content is larger than 300px, it scrolls vertically.
+*/
+.scrollable-body {
+  max-height: 300px; 
+  overflow-y: auto;  
+  overflow-x: hidden;
+  display: block;
+}
+
+/* Custom Scrollbar Styling */
+.scrollable-body::-webkit-scrollbar { width: 6px; }
+.scrollable-body::-webkit-scrollbar-track { background: #f1f1f1; }
+.scrollable-body::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+.scrollable-body::-webkit-scrollbar-thumb:hover { background: #bbb; }
+
+/* =========================================
+   5. Tables
+   ========================================= */
+.table-responsive {
+  width: 100%;
+  overflow: visible;
+}
+
+.entitlements-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: right; /* RTL */
+}
+
+.entitlements-table th {
+  background-color: #f8f9fa;
   color: #333;
+  font-weight: 700; 
+  padding: 12px 15px;
+  border-bottom: 2px solid #dee2e6;
+  font-size: 14px;
+  position: sticky; /* Keeps header at top when scrolling body */
+  top: 0;
+  z-index: 10; 
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
+  text-align: right;
 }
 
-.item-sub {
-  font-size: 12px;
-  color: #888;
-  margin-top: 2px;
+.entitlements-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  color: #333; 
+  font-size: 14px;
+  text-align: right;
 }
 
-/* Utilities */
-.empty-state {
-  padding: 30px;
-  text-align: center;
-  color: #999;
-  font-style: italic;
+.entitlements-table tr:hover {
+  background-color: #fcfcfc;
 }
 
-.loading-container {
-  text-align: center;
-  padding: 50px;
-  color: #666;
+.text-bold { font-weight: 700; }
+.role-icon { margin-right: 8px; font-size: 1.1em; }
+.code-cell { font-family: 'Consolas', 'Monaco', monospace; color: #0056b3; }
+
+/* Compact table for the Team section to save space */
+.compact-table th, 
+.compact-table td {
+  padding: 10px 12px; /* Smaller padding */
+  font-size: 0.95em;
 }
 
+/* =========================================
+   6. Utilities & Footer
+   ========================================= */
+.card-footer {
+  padding: 15px 20px;
+  border-top: 1px solid #eee;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  text-decoration: none;
+}
+.btn-primary:hover { background-color: #0056b3; }
+
+/* Status Badges */
+.status-badge { padding: 4px 8px; border-radius: 4px; font-size: 0.85em; font-weight: 600; }
+.status-badge.OrderProduct { background-color: #fff3cd; color: #856404; }
+.status-badge.Assigned { background-color: #d4edda; color: #155724; }
+.status-badge.Aborted { background-color: #f8d7da; color: #721c24; }
+
+.empty-message { padding: 30px; text-align: center; color: #999; font-style: italic; }
+.loading-state { text-align: center; padding: 50px; color: #666; }
 .spinner {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  animation: spin 1s linear infinite;
-  margin: 0 auto 10px;
+  border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%;
+  width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto 10px;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* Single column on mobile */
+  }
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}

@@ -9,8 +9,6 @@ export class MyAccessService {
 
   private readonly apiBase = '/ApiServer/portal/person';
 
-  private readonly personAdminUrl = '/ApiServer/portal/admin/person';
-
   constructor(
     private session: imx_SessionService,
     private http: HttpClient,
@@ -18,23 +16,40 @@ export class MyAccessService {
   ) {}
 
   public async testApiEndpoint(): Promise<any> {
-    const apiUrl = '/portal/admin/person';
+    const apiUrl = '/ApiServer/portal/candidates/Person';
     console.log('Testing API Endpoint:', apiUrl);
-    return this.http.get(apiUrl).toPromise();
+    const uid = await this.getUserUid();
+
+    const params = new HttpParams()
+      .set('withProperties', 'UID_PersonHead')
+      .set('PageSize', '10000');
+
+    return this.http.get(apiUrl, { params }).toPromise();
   }
 
   public async getDirectReports(): Promise<any[]> {
+    const apiUrl = '/ApiServer/portal/candidates/Person';
     const myUid = await this.getUserUid();
     if (!myUid) return [];
 
     const params = new HttpParams()
-      .set('whereClause', `UID_PersonHead = '${myUid}'`);
+      .set('withProperties', 'UID_PersonHead,IsInActive')
+      .set('PageSize', '100000');
 
-    console.log('Fetching Direct Reports from:', this.personAdminUrl);
+    console.log('Fetching Direct Reports from:', apiUrl);
 
-    return this.http.get<any>(this.personAdminUrl, { params })
-      .toPromise()
-      .then(res => res?.Entities || (Array.isArray(res) ? res : []));
+    const res = await this.http.get<any>(apiUrl, { params }).toPromise()
+
+    const usersWithManager = res?.Entities || (Array.isArray(res) ? res : []);
+
+    const myReports = usersWithManager.filter((user: any) => {
+      const manager = user.Columns.UID_PersonHead.Value;
+      const isActive = user.Columns.IsInActive.Value === false;
+
+      return manager === myUid && isActive;
+    });
+
+    return myReports;
   }
 
   public async getTestPerson(): Promise<any> {
@@ -60,7 +75,25 @@ export class MyAccessService {
     const url = `${this.apiBase}/${uid}/rolememberships/Org`;
     console.log('Fetching Business Roles from:', url);
 
-    return this.http.get<{ Entities: any[] }>(url).toPromise().then(res => res?.Entities || []);
+    const params = new HttpParams()
+      .set('PageSize', '1000')
+
+    const membership = await this.http.get<{ Entities: any[] }>(url, { params }).toPromise().then(res => res?.Entities || []);
+
+    const fullRoles = await Promise.all(membership.map(async (item) =>{
+      const orgUid = item.Columns.UID_Org.Value;
+      
+      
+      const orgDetails = await this.getOrgDetails(orgUid);
+
+      if(orgDetails) {
+        return {...item, OrgDetails: orgDetails};
+      } else {
+        return null;
+      }
+    }));
+
+    return fullRoles.filter(item => item !== null);
   }
 
   public async getEntitlements(targetUid?: string): Promise<any[]> {
@@ -74,8 +107,43 @@ export class MyAccessService {
     return this.http.get<{ Entities: any[] }>(url).toPromise().then(res => res?.Entities || []);
   }
 
+  public async getOrgDetails(uidOrg: string) {
+    const url = `/ApiServer/portal/admin/role/org/interactive/${uidOrg}`;
+
+    const res = await this.http.get<any>(url).toPromise().catch(err => {
+      console.warn(`Org ${uidOrg} is restricted or failed to load.`);
+      return null;
+    });
+
+    return res;
+  }
+
+  public async getUserRequests(targetUid?: string): Promise<any[]> {
+    const uid = targetUid || (await this.getUserUid());
+    if (!uid) return [];
+
+    const url = '/portal/itshop/requests';
+
+    const params = new HttpParams()
+      .set('PageSize', '5') 
+      .set('OrderBy', 'OrderDate desc')
+      .set('ShowMyPending', '1');
+
+    return this.http.get<{ Entities: any[] }>(url, { params })
+      .toPromise()
+      .then(res => res?.Entities || [])
+      .catch(err => {
+        console.error('Error fetching requests', err);
+        return [];
+      });
+  }
+
   private async getUserUid(): Promise<string | undefined> {
     const state = await this.session.getSessionState();
     return state?.UserUid ?? undefined;
+  }
+
+  public async getCurrentUserUid(): Promise<string | undefined> {
+    return this.getUserUid();
   }
 }
