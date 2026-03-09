@@ -1,4 +1,16 @@
 {
+  "/opsupport": {
+    "target": "https://192.168.30.6",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": { "^/opsupport": "/ApiServer/opsupport" },
+    "headers": {
+      "Host": "oi-idm03"
+    },
+    "cookieDomainRewrite": "localhost",
+    "cookiePathRewrite": "/"
+  },
   "/portal": {
     "target": "https://192.168.30.6",
     "secure": false,
