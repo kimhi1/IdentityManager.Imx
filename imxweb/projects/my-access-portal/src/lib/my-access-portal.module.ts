@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button'; // Angular BTN
 import { MatCardModule } from '@angular/material/card'; // Card for Tile
@@ -15,18 +15,6 @@ import { MyEntitlementsPageComponent } from './my-entitlements-page/my-entitleme
 const routes: Routes = [
   { path: 'my-entitlements', component: MyEntitlementsPageComponent }
 ];
-
-export function initMyAccessPortal(init: InitService) {
-  return () => init.init();
-}
-
-export function initDirectionality(dirService: DirectionalityService) {
-  return () => {
-    // Note: Replace 'he' with dynamic language code retrieval if supporting multiple languages
-    const currentLanguage = 'he-IL'; 
-    dirService.applyLanguageDirection(currentLanguage);
-  };
-}
 
 @NgModule({
   declarations: [
@@ -47,13 +35,15 @@ export function initDirectionality(dirService: DirectionalityService) {
   ],
   providers: [
     InitService,
-    DirectionalityService,
-    { provide: APP_INITIALIZER, useFactory: initMyAccessPortal, deps: [InitService], multi: true },
-    { provide: APP_INITIALIZER, useFactory: initDirectionality, deps: [DirectionalityService], multi: true }
+    DirectionalityService
   ]
 })
 export class MyAccessPortalModule { 
-  constructor(private extService: ExtService) {
+  constructor(private extService: ExtService,  private initializer: InitService, private dirService: DirectionalityService) {
     console.log('%c MyAccessPortalModule LOADED SUCCESSFULLY! ', 'background: #222; color: #bada55; font-size: 20px');
+
+    this.initializer.onInit(routes);
+    this.dirService.applyLanguageDirection('he-IL');
+
   }
 }

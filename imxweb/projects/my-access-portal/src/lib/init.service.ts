@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { NavigationStart, Router, Event as RouterEvent } from '@angular/router';
+import { NavigationStart, Route, Router, Event as RouterEvent } from '@angular/router';
 import { AuthenticationService } from 'qbm';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -17,10 +17,12 @@ export class InitService implements OnDestroy {
     private readonly authentication: AuthenticationService
   ) {}
 
-  public init(): void {
+  public onInit(routes: Route[]): void {
     console.log('MyAccessPortal InitService started');
 
     //this.injectCustomStyles();
+
+    this.addRoutes(routes);
 
     // 1. Subscribe to session status
     this.onSessionResponse = this.authentication.onSessionResponse.subscribe((session) => {
@@ -35,6 +37,14 @@ export class InitService implements OnDestroy {
         this.stopRedirectLogic();
       }
     });
+  }
+
+  private addRoutes(routes: Route[]): void {
+    const config = this.router.config;
+    routes.forEach((route) => {
+      config.unshift(route);
+    });
+    this.router.resetConfig(config);
   }
 
   private injectCustomStyles(): void {
